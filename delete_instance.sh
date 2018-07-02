@@ -6,7 +6,6 @@ INSTANCE=$3
 
 #Get volume ID
 VOLUMELIST= /usr/local/bin/aws ec2 describe-instances --instance-ids $INSTANCE  --query Reservations[].Instances[].BlockDeviceMappings[].Ebs[].VolumeId --output text --profile $PROFILE --region $REGION | tr "\t" "\n" > /tmp/volumelist.txt
-exit
 
 echo "Powering off Instance $INSTANCE"
 /usr/local/bin/aws ec2 stop-instances --instance-id $INSTANCE --profile $PROFILE --region $REGION
